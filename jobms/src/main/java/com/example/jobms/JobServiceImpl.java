@@ -1,6 +1,8 @@
 package com.example.jobms;
 
+import com.example.jobms.feign_client.CompanyClient;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +14,8 @@ public class JobServiceImpl implements JobService{
 //    private List<Job> jobs=new ArrayList<>();
 
     private final JobRepository jobRepository;
+    private final JobMapper jobMapper;
+    private final CompanyClient companyClient;
 
     @Override
     public List<Job> findAll() {
@@ -24,8 +28,12 @@ public class JobServiceImpl implements JobService{
     }
 
     @Override
-    public Job findJobById(Integer id) {
-       return jobRepository.findById(id).orElse(null);
+    public JobDto findJobById(Integer id) {
+        Job job = jobRepository.findById(id).orElse(null);
+
+        ResponseEntity<Company> company=companyClient.getCompany(job.getCompanyId());
+
+        return jobMapper.JobToJobDto(job,company.getBody());
     }
 
     @Override

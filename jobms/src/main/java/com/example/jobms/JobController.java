@@ -29,12 +29,12 @@ public class JobController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Job> findJob(@PathVariable("id") Integer id)
+    public ResponseEntity<JobDto> findJob(@PathVariable("id") Integer id)
     {
-        Job job= jobService.findJobById(id);
-        if(job!=null)
+        JobDto jobDto= jobService.findJobById(id);
+        if(jobDto!=null)
         {
-            return new ResponseEntity<>(job, HttpStatus.OK);
+            return new ResponseEntity<>(jobDto, HttpStatus.OK);
         }
         else
         {

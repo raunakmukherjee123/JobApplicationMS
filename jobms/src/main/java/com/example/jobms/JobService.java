@@ -7,7 +7,7 @@ public interface JobService {
 
     void create(Job job);
 
-    Job findJobById(Integer id);
+    JobDto findJobById(Integer id);
 
     boolean deteteJobById(Integer id);
 
