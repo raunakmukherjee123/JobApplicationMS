@@ -8,8 +8,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="service-registry" />
+        <module name="gateway" />
       </profile>
-      <profile name="Annotation profile for jobms" enabled="true">
+      <profile name="Annotation profile for reviewms" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -21,10 +22,15 @@
         <module name="jobms" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ConfigServer" target="21" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ConfigServer" options="-parameters" />
       <module name="companyms" options="-parameters" />
+      <module name="gateway" options="-parameters" />
       <module name="jobms" options="-parameters" />
       <module name="reviewms" options="-parameters" />
       <module name="service-registry" options="-parameters" />
