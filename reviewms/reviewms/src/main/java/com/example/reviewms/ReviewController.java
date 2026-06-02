@@ -1,5 +1,6 @@
 package com.example.reviewms;
 
+import com.example.reviewms.messaging.RabbitMessageProducer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

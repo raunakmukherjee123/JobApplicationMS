@@ -1,5 +1,6 @@
 package com.example.companyms;
 
+import com.example.companyms.dto.ReviewMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -47,5 +48,10 @@ public class CompanyServiceImpl implements CompanyService{
     @Override
     public Company getById(Integer id) {
         return companyRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void updateCompanyRating(ReviewMessage reviewMessage) {
+
     }
 }

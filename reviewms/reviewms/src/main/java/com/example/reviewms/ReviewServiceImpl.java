@@ -1,6 +1,7 @@
 package com.example.reviewms;
 
 
+import com.example.reviewms.messaging.RabbitMessageProducer;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ReviewServiceImpl implements ReviewService{
     private final ReviewRepository reviewRepository;
+    private final RabbitMessageProducer rabbitMessageProducer;
 
 
     @Override
@@ -27,6 +29,7 @@ public class ReviewServiceImpl implements ReviewService{
         {
             review.setCompanyId(companyId);
             reviewRepository.save(review);
+            rabbitMessageProducer.sendMessage(review);
             return "Review added";
         }
         return "No company found";
