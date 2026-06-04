@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/reviews")
 @RequiredArgsConstructor
@@ -40,5 +42,15 @@ public class ReviewController {
     public ResponseEntity<?> deleteReview(@PathVariable Integer reviewId)
     {
         return new ResponseEntity<>(reviewService.deleteReview(reviewId), HttpStatus.OK);
+    }
+
+    @GetMapping("/averageRating")
+    public Double getAverageRating(@RequestParam Integer companyId)
+    {
+        List<Review> reviews=reviewService.getAllReviews(companyId);
+
+        return reviews.stream().mapToDouble(review->review.getRating())
+                .average()
+                .orElse(0.0);
     }
 }
