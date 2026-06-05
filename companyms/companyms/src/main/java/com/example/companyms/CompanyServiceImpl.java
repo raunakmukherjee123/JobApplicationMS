@@ -1,6 +1,7 @@
 package com.example.companyms;
 
 import com.example.companyms.dto.ReviewMessage;
+import com.example.companyms.feign_client.ReviewClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ import java.util.List;
 public class CompanyServiceImpl implements CompanyService{
 
     private final CompanyRepository companyRepository;
+    private final ReviewClient reviewClient;
 
     @Override
     public List<Company> getAllCompany() {
@@ -52,6 +54,13 @@ public class CompanyServiceImpl implements CompanyService{
 
     @Override
     public void updateCompanyRating(ReviewMessage reviewMessage) {
+        Company company = companyRepository.findById(reviewMessage.getCompanyId())
+                .orElseThrow(() -> new RuntimeException("Company not found of this id:" + reviewMessage.getCompanyId()));
 
+        Double averageRating = reviewClient.getAverageRating(company.getId());
+
+        company.setAverageRating(averageRating);
+
+        companyRepository.save(company);
     }
 }
