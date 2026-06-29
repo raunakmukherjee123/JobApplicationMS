@@ -1,5 +1,7 @@
 package com.example.companyms;
 
+import com.example.companyms.dto.CompanyDTO;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,9 +35,9 @@ public class CompanyController
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> create(@RequestBody Company company)
+    public ResponseEntity<?> create(@RequestBody @Valid CompanyDTO companyDTO)
     {
-        return new ResponseEntity<>(companyService.create(company),HttpStatus.CREATED);
+        return new ResponseEntity<>(companyService.create(companyDTO),HttpStatus.CREATED);
     }
 
     @DeleteMapping("/create/{id}")

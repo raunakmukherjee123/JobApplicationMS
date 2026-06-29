@@ -1,5 +1,6 @@
 package com.example.companyms;
 
+import com.example.companyms.dto.CompanyDTO;
 import com.example.companyms.dto.ReviewMessage;
 import com.example.companyms.feign_client.ReviewClient;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +33,13 @@ public class CompanyServiceImpl implements CompanyService{
     }
 
     @Override
-    public Company create(Company company) {
+    public Company create(CompanyDTO companyDTO) {
+        Company company=new Company();
+
+        company.setName(companyDTO.getName());
+        company.setDescription(companyDTO.getDescription());
+        company.setAverageRating(companyDTO.getAverageRating());
+
         Company savedCompany=companyRepository.save(company);
         return savedCompany;
     }
