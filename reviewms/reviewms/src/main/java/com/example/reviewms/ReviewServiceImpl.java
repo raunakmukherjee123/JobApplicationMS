@@ -1,6 +1,7 @@
 package com.example.reviewms;
 
 
+import com.example.reviewms.dto.ReviewDTO;
 import com.example.reviewms.messaging.RabbitMessageProducer;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,7 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
-    public String addReview(Integer companyId, Review review) {
+    public String addReview(Integer companyId, ReviewDTO reviewDTO) {
 
         if(companyId!=null && review!=null)
         {

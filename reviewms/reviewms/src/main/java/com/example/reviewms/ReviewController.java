@@ -1,6 +1,8 @@
 package com.example.reviewms;
 
+import com.example.reviewms.dto.ReviewDTO;
 import com.example.reviewms.messaging.RabbitMessageProducer;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,9 +24,9 @@ public class ReviewController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> addReview(@RequestParam Integer companyId, @RequestBody Review review)
+    public ResponseEntity<?> addReview(@RequestParam Integer companyId, @RequestBody @Valid ReviewDTO reviewDTO)
     {
-        return new ResponseEntity<>(reviewService.addReview(companyId,review),HttpStatus.CREATED);
+        return new ResponseEntity<>(reviewService.addReview(companyId,reviewDTO),HttpStatus.CREATED);
     }
 
     @GetMapping("/review/{reviewId}")
