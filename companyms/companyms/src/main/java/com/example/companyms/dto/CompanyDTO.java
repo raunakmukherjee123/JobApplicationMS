@@ -13,6 +13,4 @@ public class CompanyDTO {
     @NotBlank(message = "Description shouldn't be blank")
     private String description;
 
-    @Min(0)
-    private Double averageRating;
 }

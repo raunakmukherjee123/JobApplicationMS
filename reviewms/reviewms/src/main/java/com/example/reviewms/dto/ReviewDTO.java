@@ -14,6 +14,4 @@ public class ReviewDTO {
 
     @Min(0)
     private double rating;
-
-    private Integer companyId;
 }

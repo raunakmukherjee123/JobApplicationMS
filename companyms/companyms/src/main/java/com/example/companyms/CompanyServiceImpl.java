@@ -38,7 +38,6 @@ public class CompanyServiceImpl implements CompanyService{
 
         company.setName(companyDTO.getName());
         company.setDescription(companyDTO.getDescription());
-        company.setAverageRating(companyDTO.getAverageRating());
 
         Company savedCompany=companyRepository.save(company);
         return savedCompany;

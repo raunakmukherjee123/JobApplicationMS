@@ -7,6 +7,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -26,14 +27,42 @@ public class ReviewServiceImpl implements ReviewService{
     @Override
     public String addReview(Integer companyId, ReviewDTO reviewDTO) {
 
-        if(companyId!=null && review!=null)
-        {
-            review.setCompanyId(companyId);
-            reviewRepository.save(review);
-            rabbitMessageProducer.sendMessage(review);
-            return "Review added";
+//        if(companyId!=null && reviewDTO!=null)
+//        {
+//            Review review=new Review();
+//
+//            review.setCompanyId(companyId);
+//            review.setRating(reviewDTO.getRating());
+//            review.setTitle(reviewDTO.getTitle());
+//            review.setDescription(reviewDTO.getDescription());
+//
+//            reviewRepository.save(review);
+//            rabbitMessageProducer.sendMessage(review);
+//            return "Review added";
+//        }
+//        return "No company found";
+        try {
+                Review review=new Review();
+
+                review.setCompanyId(companyId);
+                review.setRating(reviewDTO.getRating());
+                review.setTitle(reviewDTO.getTitle());
+                review.setDescription(reviewDTO.getDescription());
+
+                reviewRepository.save(review);
+                rabbitMessageProducer.sendMessage(review);
+                return "Review added";
         }
-        return "No company found";
+        catch (Exception e)
+        {
+            ErrorResponse errorResponse=new ErrorResponse();
+
+            errorResponse.setTime(LocalDateTime.now());
+            errorResponse.setDetails(e.getMessage());
+            errorResponse.setMessage("No company found");
+
+            return errorResponse;
+        }
     }
 
     @Override
