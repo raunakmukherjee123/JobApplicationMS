@@ -55,7 +55,8 @@ public class CompanyServiceImpl implements CompanyService{
 
     @Override
     public Company getById(Integer id) {
-        return companyRepository.findById(id).orElse(null);
+        return companyRepository.findById(id)
+                .orElseThrow(()->new RuntimeException("No company found"));
     }
 
     @Override
