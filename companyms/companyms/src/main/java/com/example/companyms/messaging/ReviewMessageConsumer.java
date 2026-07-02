@@ -16,6 +16,10 @@ public class ReviewMessageConsumer {
     @RabbitListener(queues = "${rabbitmq.queue.name}")
     public void consumeMessage(ReviewMessage reviewMessage)
     {
-        companyService.updateCompanyRating(reviewMessage);
+        try {
+            companyService.updateCompanyRating(reviewMessage);
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

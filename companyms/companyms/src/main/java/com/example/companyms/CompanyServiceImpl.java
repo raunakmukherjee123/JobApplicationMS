@@ -2,6 +2,7 @@ package com.example.companyms;
 
 import com.example.companyms.dto.CompanyDTO;
 import com.example.companyms.dto.ReviewMessage;
+import com.example.companyms.exceptions.CompanyNotFoundExceptions;
 import com.example.companyms.feign_client.ReviewClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -56,7 +57,7 @@ public class CompanyServiceImpl implements CompanyService{
     @Override
     public Company getById(Integer id) {
         return companyRepository.findById(id)
-                .orElseThrow(()->new RuntimeException("No company found"));
+                .orElseThrow(()->new CompanyNotFoundExceptions("No company found"));
     }
 
     @Override
