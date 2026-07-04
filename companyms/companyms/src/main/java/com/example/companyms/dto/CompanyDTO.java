@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 public class CompanyDTO {
-    @NotNull(message = "Company name shouldn't be null")
+    @NotBlank(message = "Company name shouldn't be blank")
     private String name;
 
     @NotBlank(message = "Description shouldn't be blank")
