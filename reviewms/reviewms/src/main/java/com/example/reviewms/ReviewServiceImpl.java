@@ -21,6 +21,11 @@ public class ReviewServiceImpl implements ReviewService{
     public List<Review> getAllReviews(Integer companyId) {
         List<Review> reviewList=reviewRepository.findByCompanyId(companyId);
 
+        if(reviewList.isEmpty())
+        {
+            throw new ReviewNotFoundException("No review found in database");
+        }
+
         return reviewList;
     }
 
