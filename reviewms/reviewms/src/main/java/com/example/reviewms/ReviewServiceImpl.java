@@ -2,6 +2,7 @@ package com.example.reviewms;
 
 
 import com.example.reviewms.dto.ReviewDTO;
+import com.example.reviewms.exceptions.ReviewNotFoundException;
 import com.example.reviewms.messaging.RabbitMessageProducer;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -44,7 +45,8 @@ public class ReviewServiceImpl implements ReviewService{
 
     @Override
     public Review getReviewBydId(Integer reviewId) {
-      return reviewRepository.findById(reviewId).orElse(null);
+      return reviewRepository.findById(reviewId)
+              .orElseThrow(()->new ReviewNotFoundException("No review found of this id"));
     }
 
     @Override
