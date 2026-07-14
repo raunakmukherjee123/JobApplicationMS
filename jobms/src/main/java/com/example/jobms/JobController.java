@@ -42,6 +42,12 @@ public class JobController {
         }
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findJobProjection(@PathVariable("id") Integer id)
+    {
+        return new ResponseEntity<>(jobService.findJoProjection(id),HttpStatus.OK);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteJob(@PathVariable("id") Integer id)
     {

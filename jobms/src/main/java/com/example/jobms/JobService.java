@@ -12,4 +12,6 @@ public interface JobService {
     boolean deteteJobById(Integer id);
 
     boolean updateJob(Integer id, Job updatedjob);
+
+    JobDTO1 findJoProjection(Integer id);
 }

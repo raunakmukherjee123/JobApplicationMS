@@ -65,4 +65,10 @@ public class JobServiceImpl implements JobService{
             }
         return false;
     }
+
+    @Override
+    public JobDTO1 findJoProjection(Integer id) {
+
+        return null;
+    }
 }
