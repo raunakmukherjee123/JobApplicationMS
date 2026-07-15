@@ -42,7 +42,7 @@ public class JobController {
         }
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/projection/{id}")
     public ResponseEntity<?> findJobProjection(@PathVariable("id") Integer id)
     {
         return new ResponseEntity<>(jobService.findJoProjection(id),HttpStatus.OK);

@@ -1,5 +1,6 @@
 package com.example.jobms;
 
+import com.example.jobms.exceptions.JobNotFoundException;
 import com.example.jobms.feign_client.CompanyClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -68,7 +69,12 @@ public class JobServiceImpl implements JobService{
 
     @Override
     public JobDTO1 findJoProjection(Integer id) {
+        JobDTO1 jobDTO1=jobRepository.findJobProjectionById(id);
 
-        return null;
+        if(jobDTO1==null)
+        {
+            throw new JobNotFoundException("No job found of this id");
+        }
+        return jobDTO1;
     }
 }

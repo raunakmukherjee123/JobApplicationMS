@@ -1,9 +1,13 @@
 package com.example.jobms;
 
-public class JobDTO1 {
-    private String title;
-    private String description;
-    private Long minSalary;
-    private Long maxSalary;
-    private String location;
+public interface JobDTO1 {
+    public String getTitle();
+
+    public String getDescription();
+
+    public Long getMinSalary();
+
+    public Long getMaxSalary();
+
+    public String getLocation();
 }
