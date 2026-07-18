@@ -19,7 +19,6 @@ public class GlobalExceptionHandler {
         ErrorResponse errorResponse=new ErrorResponse();
 
         errorResponse.setTime(LocalDateTime.now());
-        errorResponse.setMessage("Company with this id not found in database");
         errorResponse.setDetails(companyNotFoundExceptions.getMessage());
 
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
