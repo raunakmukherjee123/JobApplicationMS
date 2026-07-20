@@ -36,3 +36,27 @@ eureka:
   instance:
     prefer-ip-address: true
 
+#for actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  health:
+    circuitbreakers:
+      enabled: true
+
+# Circuit breakers
+resilience4j:
+  circuitbreaker:
+    instances:
+      companyService:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        waitDurationInOpenState: 10s
+        failureRateThreshold: 50
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        slidingWindowType: count_based
+
