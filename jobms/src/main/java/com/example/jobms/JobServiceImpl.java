@@ -2,6 +2,7 @@ package com.example.jobms;
 
 import com.example.jobms.exceptions.JobNotFoundException;
 import com.example.jobms.feign_client.CompanyClient;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,7 @@ public class JobServiceImpl implements JobService{
     }
 
     @Override
+    @CircuitBreaker(name = "companyService")
     public JobDto findJobById(Integer id) {
         Job job = jobRepository.findById(id).orElse(null);
 
