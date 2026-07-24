@@ -37,6 +37,12 @@ public class ReviewController {
         return new ResponseEntity<>(reviewService.getReviewBydId(reviewId), HttpStatus.OK);
     }
 
+    @GetMapping("/projection/{reviewId}")
+    public ResponseEntity<?> getReviewByProjection(@PathVariable Integer reviewId)
+    {
+        return new ResponseEntity<>(reviewService.getReviewByProjection(reviewId), HttpStatus.OK);
+    }
+
     @PutMapping("/review/{reviewId}")
     public ResponseEntity<?> updateReview(@PathVariable Integer reviewId, @RequestBody Review review)
     {

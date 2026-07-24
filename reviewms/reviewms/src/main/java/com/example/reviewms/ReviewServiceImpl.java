@@ -4,6 +4,7 @@ package com.example.reviewms;
 import com.example.reviewms.dto.ReviewDTO;
 import com.example.reviewms.exceptions.ReviewNotFoundException;
 import com.example.reviewms.messaging.RabbitMessageProducer;
+import com.example.reviewms.projection.ReviewProjection;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -79,5 +80,10 @@ public class ReviewServiceImpl implements ReviewService{
             return "Review has been deleted";
         }
         return "Cannot be deleted";
+    }
+
+    @Override
+    public ReviewProjection getReviewByProjection(Integer reviewId) {
+        return null;
     }
 }
