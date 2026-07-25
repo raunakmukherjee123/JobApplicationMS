@@ -84,6 +84,13 @@ public class ReviewServiceImpl implements ReviewService{
 
     @Override
     public ReviewProjection getReviewByProjection(Integer reviewId) {
-        return null;
+        ReviewProjection reviewProjection=reviewRepository.findReviewById(reviewId);
+
+        if(reviewProjection==null)
+        {
+            throw new ReviewNotFoundException("No review found for id = "+reviewId);
+        }
+
+        return reviewProjection;
     }
 }
