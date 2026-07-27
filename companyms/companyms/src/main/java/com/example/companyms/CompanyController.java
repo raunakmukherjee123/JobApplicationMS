@@ -1,6 +1,7 @@
 package com.example.companyms;
 
 import com.example.companyms.dto.CompanyDTO;
+import com.example.companyms.projections.CompanyProjection;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -57,12 +58,12 @@ public class CompanyController
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getCompany(@PathVariable("id") Integer id) {
-        Company company = companyService.getById(id);
+        CompanyProjection companyProjection = companyService.getById(id);
 
 //        if (company != null) {
 //            return new ResponseEntity<>(company, HttpStatus.OK);
 //        }
-            return new ResponseEntity<>(company, HttpStatus.OK);
+            return new ResponseEntity<>(companyProjection, HttpStatus.OK);
 
 
        // return new ResponseEntity<>("No company found", HttpStatus.NOT_FOUND);
