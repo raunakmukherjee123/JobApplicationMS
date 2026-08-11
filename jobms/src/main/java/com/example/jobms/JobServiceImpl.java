@@ -29,8 +29,11 @@ public class JobServiceImpl implements JobService{
 
      for(Job job:jobList)
      {
-
+       ResponseEntity<Company> company=companyClient.getCompany(job.getCompanyId());
+       jobDtoList.add(jobMapper.JobToJobDto(job,company.getBody()));
      }
+
+     return jobDtoList;
     }
 
     @Override
