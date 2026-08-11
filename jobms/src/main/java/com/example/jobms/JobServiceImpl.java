@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,8 +21,16 @@ public class JobServiceImpl implements JobService{
     private final CompanyClient companyClient;
 
     @Override
-    public List<Job> findAll() {
-        return jobRepository.findAll();
+    public List<JobDto> findAll() {
+
+     List<Job> jobList = jobRepository.findAll();
+
+     List<JobDto> jobDtoList=new ArrayList<>();
+
+     for(Job job:jobList)
+     {
+
+     }
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.example.jobms;
 import java.util.List;
 
 public interface JobService {
-    List<Job> findAll();
+    List<JobDto> findAll();
 
     void create(Job job);
 
