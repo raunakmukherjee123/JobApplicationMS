@@ -3,6 +3,7 @@ package com.example.reviewms;
 
 import com.example.reviewms.dto.ReviewDTO;
 import com.example.reviewms.exceptions.ReviewNotFoundException;
+import com.example.reviewms.mapper.ReviewMapper;
 import com.example.reviewms.messaging.RabbitMessageProducer;
 import com.example.reviewms.projection.ReviewProjection;
 import jakarta.transaction.Transactional;
@@ -16,6 +17,7 @@ import java.util.List;
 public class ReviewServiceImpl implements ReviewService{
     private final ReviewRepository reviewRepository;
     private final RabbitMessageProducer rabbitMessageProducer;
+    private final ReviewMapper reviewMapper;
 
 
     @Override
