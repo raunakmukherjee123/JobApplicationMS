@@ -2,6 +2,7 @@ package com.example.reviewms;
 
 
 import com.example.reviewms.dto.ReviewDTO;
+import com.example.reviewms.dto.ReviewResponse;
 import com.example.reviewms.exceptions.ReviewNotFoundException;
 import com.example.reviewms.mapper.ReviewMapper;
 import com.example.reviewms.messaging.RabbitMessageProducer;
@@ -10,6 +11,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,15 +23,22 @@ public class ReviewServiceImpl implements ReviewService{
 
 
     @Override
-    public List<Review> getAllReviews(Integer companyId) {
+    public List<ReviewResponse> getAllReviews(Integer companyId) {
         List<Review> reviewList=reviewRepository.findByCompanyId(companyId);
+
+        List<ReviewResponse> reviewResponseList=new ArrayList<>();
 
         if(reviewList.isEmpty())
         {
             throw new ReviewNotFoundException("No review found in database");
         }
 
-        return reviewList;
+        for(Review review:reviewList)
+        {
+            reviewResponseList.add(reviewMapper.ReviewToReviewResponse(review));
+        }
+
+        return reviewResponseList;
     }
 
     @Override
