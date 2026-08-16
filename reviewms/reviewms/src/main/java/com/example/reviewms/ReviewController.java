@@ -1,6 +1,7 @@
 package com.example.reviewms;
 
 import com.example.reviewms.dto.ReviewDTO;
+import com.example.reviewms.dto.ReviewResponse;
 import com.example.reviewms.messaging.RabbitMessageProducer;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -58,7 +59,7 @@ public class ReviewController {
     @GetMapping("/averageRating")
     public Double getAverageRating(@RequestParam Integer companyId)
     {
-        List<Review> reviews=reviewService.getAllReviews(companyId);
+        List<ReviewResponse> reviews=reviewService.getAllReviews(companyId);
 
         return reviews.stream().mapToDouble(review->review.getRating())
                 .average()
