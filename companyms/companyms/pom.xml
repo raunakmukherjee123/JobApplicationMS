@@ -37,7 +37,7 @@
 		</dependency>
 
 
-<!--for rabbitmq-->
+<!--for rabbitmq, dependency name= "Spring for RabbitMQ" -->
 
             <dependency>
                 <groupId>org.springframework.boot</groupId>
